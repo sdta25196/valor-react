@@ -11,4 +11,5 @@
 
 ## TODOLIST
   * 安装`pnpm`，`npm i -g pnpm`
-  * 初始化项目`pnpm init`
+  * 初始化项目：`pnpm init`
+  * 初始化eslint：`npx eslint --init`

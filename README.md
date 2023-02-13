@@ -5,7 +5,7 @@
   > `Multi-repo`结构是多仓库独立，不便于进行协同管理。
 
 采用`pnpm`
-  > pnpm安装依赖更快。
+  > pnpm创建mono-repo更快捷，并且安装依赖更快
 
 
 ## TODOLIST

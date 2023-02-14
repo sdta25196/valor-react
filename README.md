@@ -5,7 +5,7 @@
   > `Multi-repo`结构是多仓库独立，不便于进行协同管理。
 
 采用`pnpm`
-  > pnpm自带workspace，创建mono-repo更快捷；pnpm还能够解决幽灵依赖问题。
+  > pnpm自带workspace，创建mono-repo更快捷；pnpm还能够解决幽灵依赖问题。[pnpm的优势](https://juejin.cn/post/7127295203177676837)
 
 
 ## TODOLIST

@@ -1,12 +1,12 @@
 
-# [1]
+# [1] 工程初始化
 
 采用`Mono-repo`项目结构
   > `Multi-repo`结构是多仓库独立，不便于进行协同管理。
 
 采用`pnpm`
   > pnpm自带workspace，创建mono-repo更快捷；pnpm还能够解决幽灵依赖问题。[pnpm的优势](https://juejin.cn/post/7127295203177676837)
-
+  > npm 有package黑洞的问题，yarn采用扁平化处理，解决部分黑洞问题（多版本依赖还是拥有黑洞问题），并且有幽灵依赖问题。pnpm 采用link的方式解决黑洞问题，同时也没有幽灵依赖。
 
 ## TODOLIST
   * 安装`pnpm`，`npm i -g pnpm`
@@ -42,3 +42,10 @@
   * 将commitlint集成到husky: `npx husky add .husky/commit-msg "npx --no-install commitlint -e $HUSKY_GIT_PARAMS"`
   * 配置`tsconfig.json`
   * 安装rollup: `pnpm i -D -w rollup`
+  
+# [2] JSX转换
+
+  实现运行时jsx方法、实现打包流程、实现调试打包结果的环境
+
+  * 创建/packages/react文件夹，并在react目录下初始化pnpm,`cd /packages/react`; `pnpm init`
+

@@ -48,4 +48,7 @@
   实现运行时jsx方法、实现打包流程、实现调试打包结果的环境
 
   * 创建/packages/react文件夹，并在react目录下初始化pnpm,`cd /packages/react`; `pnpm init`
-
+    * 实现jsx逻辑
+  * 创建/packages/shared文件夹，并在shared目录下初始化pnpm,`cd /packages/shared`; `pnpm init`
+    * 定义jsx使用的ReactElement数据结构
+  

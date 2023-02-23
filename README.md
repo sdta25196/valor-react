@@ -23,6 +23,7 @@
   * 安装husky拦截git命令：`pnpm i husky -D -w`,并进行相关配置
     * `npx husky install`  初始化husky
     * `npx husky add .husky/pre-commit "pnpm lint"`  添加钩子
+    * 配置脚本`"prepare": "husky install"`确保新项目会执行初始化husky
   * 安装commitlint检查commit信息规范：`pnpm i commitlint @commitlint/cli @commitlint/config-conventional -D -w`，并添加`.commitlintrc.js`文件。配置如下：
     
     ```js
@@ -56,12 +57,12 @@
 编写rollup打包逻辑
 
 * 实现打包方法 /scripts/rollup/react.config.js , 安装rollup插件`pnpm i -D -w @rollup/plugin-commonjs rollup-plugin-typescript2`
-* 配置打包命令`"build:dev":"rollup --bundleConfigAsCjs --config scripts/rollup/react.config.js"`
+* 配置脚本打包命令`"build:dev":"rollup --bundleConfigAsCjs --config scripts/rollup/react.config.js"`
 
 安装rimraf，每次打包前删除dist
 
 * 安装`pnpm i -D -w rimraf` 
-* 配置打包命令`"rimraf dist && build:dev":"rollup --bundleConfigAsCjs --config scripts/rollup/react.config.js"`
+* 修改脚本打包命令`"build:dev":"rimraf dist && rollup --bundleConfigAsCjs --config scripts/rollup/react.config.js"`
 
 安装package.json生成插件
 

@@ -8,7 +8,8 @@
   > pnpm自带workspace，创建mono-repo更快捷；pnpm还能够解决幽灵依赖问题。[pnpm的优势](https://juejin.cn/post/7127295203177676837)
   > npm 有package黑洞的问题，yarn采用扁平化处理，解决部分黑洞问题（多版本依赖还是拥有黑洞问题），并且有幽灵依赖问题。pnpm 采用link的方式解决黑洞问题，同时也没有幽灵依赖。
 
-## TODOLIST
+## 安装依赖初始化项目
+
   * 安装`pnpm`，`npm i -g pnpm`
   * 初始化项目：`pnpm init`
   * 安装eslint：`pnpm i eslint -D -w` ，`-w`代表安装到根目录
@@ -45,10 +46,23 @@
   
 # [2] JSX转换
 
-  实现运行时jsx方法、实现打包流程、实现调试打包结果的环境
+实现运行时jsx方法、实现打包流程、实现调试打包结果的环境
 
-  * 创建/packages/react文件夹，并在react目录下初始化pnpm,`cd /packages/react`; `pnpm init`
-    * 实现jsx逻辑
-  * 创建/packages/shared文件夹，并在shared目录下初始化pnpm,`cd /packages/shared`; `pnpm init`
-    * 定义jsx使用的ReactElement数据结构
-  
+* 创建/packages/react文件夹，并在react目录下初始化pnpm,`cd /packages/react`; `pnpm init`
+  * 实现jsx逻辑
+* 创建/packages/shared文件夹，并在shared目录下初始化pnpm,`cd /packages/shared`; `pnpm init`
+  * 定义jsx使用的ReactElement数据结构
+
+编写rollup打包逻辑
+
+* 实现打包方法 /scripts/rollup/react.config.js , 安装rollup插件`pnpm i -D -w @rollup/plugin-commonjs rollup-plugin-typescript2`
+* 配置打包命令`"build:dev":"rollup --bundleConfigAsCjs --config scripts/rollup/react.config.js"`
+
+安装rimraf，每次打包前删除dist
+
+* 安装`pnpm i -D -w rimraf` 
+* 配置打包命令`"rimraf dist && build:dev":"rollup --bundleConfigAsCjs --config scripts/rollup/react.config.js"`
+
+安装package.json生成插件
+
+* `pnpm i -D -w rollup-plugin-generate-package-json`, 在react打包配置中进行指定的package.json生成字段

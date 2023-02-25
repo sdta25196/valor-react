@@ -74,4 +74,40 @@
 将打包后的 react ，link 到全局 ，然后替换掉cra中的react，来实现调试
   * 跳转至打包后路径 `cd .\dist\node_modules\react\`
   * link `pnpm link --global`
-  * 根目录创建cra `npx create-react-app react-demo`
+  * 根目录创建cra `npx create-react-app react-demo`  在react-demo目录下执行`pnpm link react --global`,把react包替换成valor-reaact
+
+# [3] Reconciler
+
+协调（reconcile）就是diff,使用了新的数据结构`FiberNode`,也就是react中的虚拟DOM。
+
+## reconciler的工作方式
+
+对于同一个节点，Reconciler比较其ReactElement与fiberNode，生成子fiberNode。并根据比较的结果生成不同标记（插入、删除、移动......），对应不同宿主环境API的执行。
+
+比如，挂载`<div></div>`:
+
+```js
+  // React Element <div></div>
+  jsx("div")
+  // 对应fiberNode
+  null
+  // 生成子fiberNode
+  // 对应标记
+  Placement
+```
+然后将`<div></div>`更新为`<p></p>`：
+
+```js
+// React Element <p></p>
+jsx("p")
+// 对应fiberNode
+FiberNode {type: 'div'}
+// 生成子fiberNode
+// 对应标记
+Deletion Placement
+```
+
+当所有ReactElement比较完后，会生成一棵fiberNode树，一共会存在两棵fiberNode树（双缓冲技术）：
+
+* current：与视图中真实UI对应的fiberNode树
+* workInProgress：触发更新后，正在reconciler中计算的fiberNode树

@@ -47,14 +47,14 @@
   
 # [2] JSX转换
 
-实现运行时jsx方法、实现打包流程、实现调试打包结果的环境
+## 实现运行时jsx方法、实现打包流程、实现调试打包结果的环境
 
 * 创建/packages/react文件夹，并在react目录下初始化pnpm,`cd /packages/react`; `pnpm init`
   * 实现jsx逻辑
 * 创建/packages/shared文件夹，并在shared目录下初始化pnpm,`cd /packages/shared`; `pnpm init`
   * 定义jsx使用的ReactElement数据结构
 
-编写rollup打包逻辑
+## 编写rollup打包逻辑
 
 * 实现打包方法 /scripts/rollup/react.config.js , 安装rollup插件`pnpm i -D -w @rollup/plugin-commonjs rollup-plugin-typescript2`
 * 配置脚本打包命令`"build:dev":"rollup --bundleConfigAsCjs --config scripts/rollup/react.config.js"`
@@ -67,3 +67,11 @@
 安装package.json生成插件
 
 * `pnpm i -D -w rollup-plugin-generate-package-json`, 在react打包配置中进行指定的package.json生成字段
+
+
+## 实现第一种调试方式
+
+将打包后的 react ，link 到全局 ，然后替换掉cra中的react，来实现调试
+  * 跳转至打包后路径 `cd .\dist\node_modules\react\`
+  * link `pnpm link --global`
+  * 根目录创建cra `npx create-react-app react-demo`

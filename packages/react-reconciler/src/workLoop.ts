@@ -11,21 +11,21 @@ function prepareFreshStack(root: FiberRootNode) {
 
 export function scheduleUpdataOnFiber(fiber: FiberNode) {
 	// 调度功能
-	const root = markUpdateFromFiberToRoot(fiber)
-	renderRoot(root)
+	const root = markUpdateFromFiberToRoot(fiber);
+	renderRoot(root);
 }
 
 function markUpdateFromFiberToRoot(fiber: FiberNode) {
-	let node = fiber
-	let parent = node.return
+	let node = fiber;
+	let parent = node.return;
 	while (parent !== null) {
-		node = parent
-		parent = node.return
+		node = parent;
+		parent = node.return;
 	}
 	if (node.tag === HostRoot) {
-		return node.stateNode
+		return node.stateNode;
 	}
-	return null
+	return null;
 }
 
 function renderRoot(root: FiberRootNode) {

@@ -18,9 +18,9 @@ export class FiberNode {
 	pendingProps: Props;
 	memoizedProps: Props | null;
 	memoizedState: any;
-	alternate: Props | null;  // 备用节点
+	alternate: Props | null; // 备用节点
 	flags: Flags;
-	updateQueue: unknown
+	updateQueue: unknown;
 
 	constructor(tag: WorkTag, pendingProps: Props, key: Key) {
 		this.tag = tag;
@@ -38,7 +38,7 @@ export class FiberNode {
 		this.pendingProps = pendingProps;
 		this.memoizedProps = null;
 		this.memoizedState = null;
-		this.updateQueue = null
+		this.updateQueue = null;
 
 		this.alternate = null;
 		this.flags = NoFlags;
@@ -51,34 +51,37 @@ export class FiberRootNode {
 	finisheWork: FiberNode | null;
 
 	constructor(container: Container, hostRootFiber: FiberNode) {
-		this.container = container
-		this.current = hostRootFiber
-		hostRootFiber.stateNode = this
+		this.container = container;
+		this.current = hostRootFiber;
+		hostRootFiber.stateNode = this;
 		this.finisheWork = null;
 	}
 }
 
-export const createWorkInProgress = (current: FiberNode, pendingPros: Props): FiberNode => {
+export const createWorkInProgress = (
+	current: FiberNode,
+	pendingPros: Props
+): FiberNode => {
 	// workInProgress
-	let wip = current.alternate // 双缓存机制，此处可以获得另外一个相对应的 fiberNode. 之前被存在节点的 alternate 属性中
+	let wip = current.alternate; // 双缓存机制，此处可以获得另外一个相对应的 fiberNode. 之前被存在节点的 alternate 属性中
 
 	if (wip === null) {
 		// mount阶段
-		wip = new FiberNode(current.tag, pendingPros, current.key)
-		wip.type = current.type
-		wip.stateNode = current.stateNode
-		wip.alternate = current
-		current.alternate = wip
+		wip = new FiberNode(current.tag, pendingPros, current.key);
+		wip.type = current.type;
+		wip.stateNode = current.stateNode;
+		wip.alternate = current;
+		current.alternate = wip;
 	} else {
-		wip.pendingProps = pendingPros
-		wip.flags = NoFlags
+		wip.pendingProps = pendingPros;
+		wip.flags = NoFlags;
 	}
 
-	wip.type = current.type
-	wip.updateQueue = current.updateQueue
-	wip.child = current.child
-	wip.memoizedProps = current.memoizedProps
-	wip.memoizedState = current.memoizedState
+	wip.type = current.type;
+	wip.updateQueue = current.updateQueue;
+	wip.child = current.child;
+	wip.memoizedProps = current.memoizedProps;
+	wip.memoizedState = current.memoizedState;
 
 	return wip;
-}
+};

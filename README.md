@@ -111,3 +111,18 @@ Deletion Placement
 
 * current：与视图中真实UI对应的fiberNode树
 * workInProgress：触发更新后，正在reconciler中计算的fiberNode树
+
+## Update 数据结构
+
+  Update数据结构用来实现状态更新机制
+
+  Update数据结构目录: `\packages\react-reconciler\src\updateQueue.ts`
+
+  触发更新的方法（例如：useState）触发了 renderRoot 时，需要使用一个数据结构 - Update。
+
+
+  fiberReconciler 实现创建和更新
+
+  `fiberReconciler.ts`中创建`FiberRootNode`,并与`hostRootNode`链接起来。在`updateContainer`中执行更新队列的更新然后消费，消费调用`scheduleUpdataOnFiber`
+
+  `scheduleUpdataOnFiber` 会调用renderRoot, 执行Reconciler整个递归过程。  首先会调用`prepareFreshStack` -> `createWorkInProgress`来初始化首屏渲染。

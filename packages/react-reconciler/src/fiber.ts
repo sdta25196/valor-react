@@ -20,6 +20,7 @@ export class FiberNode {
 	memoizedState: any;
 	alternate: Props | null; // 备用节点
 	flags: Flags;
+	subtreeFalgs: Flags;
 	updateQueue: unknown;
 
 	constructor(tag: WorkTag, pendingProps: Props, key: Key) {
@@ -42,6 +43,7 @@ export class FiberNode {
 
 		this.alternate = null;
 		this.flags = NoFlags;
+		this.subtreeFalgs = NoFlags;
 	}
 }
 
@@ -75,6 +77,7 @@ export const createWorkInProgress = (
 	} else {
 		wip.pendingProps = pendingPros;
 		wip.flags = NoFlags;
+		wip.subtreeFalgs = NoFlags;
 	}
 
 	wip.type = current.type;

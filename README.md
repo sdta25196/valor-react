@@ -150,7 +150,7 @@ export function getBaseRollupPlugins({
 随后便可在代码中使用 `__DEV__` 变量，在开发环境中生效`__DEV__`会变编译为`true`，生产环境会编译为`false`。
 
 
-## beginWork逻辑
+## beginWork 逻辑
 
 ```html
 <A>
@@ -161,3 +161,9 @@ export function getBaseRollupPlugins({
 当进入A的beginWork时，通过对比B current fiberNode与B reactElement，生成B对应wip fiberNode。
 
 当拥有多个标记的时候（例如多个 Placement），会多次执行标记，所以此处是用来**离屏DOM树**的优化策略。在真实dom中将合并多次标记一次操作。
+
+## completeWork 阶段
+
+  归的过程创建**离屏DOM树**，然后插入到对应节点中，同时 为了方便统计flags, 在这个过程中利用或运算，把子节点中的 flags 都冒泡到上层节点的 subtreeFalgs 中
+
+# [5] commit 阶段

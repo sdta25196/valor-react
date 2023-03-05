@@ -112,6 +112,8 @@ Deletion Placement
 * current：与视图中真实UI对应的fiberNode树
 * workInProgress：触发更新后，正在reconciler中计算的fiberNode树
 
+# [4] 状态更新机制
+
 ## Update 数据结构
 
   Update数据结构用来实现状态更新机制
@@ -121,8 +123,41 @@ Deletion Placement
   触发更新的方法（例如：useState）触发了 renderRoot 时，需要使用一个数据结构 - Update。
 
 
-  fiberReconciler 实现创建和更新
+## fiberReconciler 实现创建和更新
 
   `fiberReconciler.ts`中创建`FiberRootNode`,并与`hostRootNode`链接起来。在`updateContainer`中执行更新队列的更新然后消费，消费调用`scheduleUpdataOnFiber`
 
   `scheduleUpdataOnFiber` 会调用renderRoot, 执行Reconciler整个递归过程。  首先会调用`prepareFreshStack` -> `createWorkInProgress`来初始化首屏渲染。
+
+# [5] mount阶段
+
+mount流程就是：首屏渲染的更新流程，更新流程就是递（beginWork）归（completeWork）。
+  * 生成 wip fiberNode 树
+  * 标记副作用
+  
+为方便调试，新增一个 rollup 插件 `pnpm i -D -w @rollup/plugin-replace`, 随后更新rollup的插件配置`scripts/utils.js/getBaseRollupPlugins`
+
+```js
+// 基础 rollup 插件
+export function getBaseRollupPlugins({
+  typescript = {},
+  alias = { __DEV__: true }
+} = {}) {
+  return [replace(alias), cjs(), ts(typescript)]
+}
+```
+
+随后便可在代码中使用 `__DEV__` 变量，在开发环境中生效`__DEV__`会变编译为`true`，生产环境会编译为`false`。
+
+
+## beginWork逻辑
+
+```html
+<A>
+ <B/>
+</A>
+```
+
+当进入A的beginWork时，通过对比B current fiberNode与B reactElement，生成B对应wip fiberNode。
+
+当拥有多个标记的时候（例如多个 Placement），会多次执行标记，所以此处是用来**离屏DOM树**的优化策略。在真实dom中将合并多次标记一次操作。

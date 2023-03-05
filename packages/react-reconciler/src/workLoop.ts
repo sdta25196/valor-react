@@ -42,8 +42,8 @@ function renderRoot(root: FiberRootNode) {
 		}
 	} while (true);
 
-	const finishedWork = root.current.alternate
-	root.finisheWork = finishedWork
+	const finishedWork = root.current.alternate;
+	root.finisheWork = finishedWork;
 
 	// commitRoot(root) // commit 阶段
 }

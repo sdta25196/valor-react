@@ -86,21 +86,17 @@ export const createWorkInProgress = (
 	return wip;
 };
 
-
 export function createFiberFromElement(element: ReactElementType): FiberNode {
-	const { type, key, props } = element
-	let fiberTag: WorkTag = FunctionComponent
+	const { type, key, props } = element;
+	let fiberTag: WorkTag = FunctionComponent;
 
 	if (typeof type === 'string') {
-		fiberTag = HostComponent
+		fiberTag = HostComponent;
 	} else if (typeof type !== 'function' && __DEV__) {
-		console.log("未定义的类型", element);
+		console.log('未定义的类型', element);
 	}
 
-	const fiber = new FiberNode(fiberTag, props, key)
-	fiber.type = type
-	return fiber
-
-
-
+	const fiber = new FiberNode(fiberTag, props, key);
+	fiber.type = type;
+	return fiber;
 }

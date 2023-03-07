@@ -47,39 +47,36 @@ function renderRoot(root: FiberRootNode) {
 	const finishedWork = root.current.alternate;
 	root.finisheWork = finishedWork;
 
-	commitRoot(root) // commit 阶段
+	commitRoot(root); // commit 阶段
 }
 
-
 function commitRoot(root: FiberRootNode) {
-	const finishedWork = root.finisheWork
+	const finishedWork = root.finisheWork;
 
 	if (finishedWork === null) {
-		return
+		return;
 	}
 
 	if (__DEV__) {
-		console.log("commit阶段开始");
+		console.log('commit阶段开始');
 	}
 
-	root.finisheWork = null
+	root.finisheWork = null;
 
-	const subtreeHasEffect = (finishedWork.subtreeFalgs & MutationMask) !== NoFlags
-	const rootHasEffect = (finishedWork.flags & MutationMask) !== NoFlags
+	const subtreeHasEffect =
+		(finishedWork.subtreeFalgs & MutationMask) !== NoFlags;
+	const rootHasEffect = (finishedWork.flags & MutationMask) !== NoFlags;
 
 	if (subtreeHasEffect || rootHasEffect) {
 		// beforeMutation
 		// mutation
-		commitMutationEffect(finishedWork)
-		root.current = finishedWork
+		commitMutationEffect(finishedWork);
+		root.current = finishedWork;
 		// layout
 	} else {
-		root.current = finishedWork
+		root.current = finishedWork;
 	}
-
-
 }
-
 
 function workLoop() {
 	while (workInProgress !== null) {

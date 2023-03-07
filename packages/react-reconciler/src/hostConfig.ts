@@ -14,4 +14,4 @@ export const createTextInitialChilld = (...args: any) => {
 
 export const appendChildToContainer = (...args: any) => {
 	return {} as any;
-}
+};

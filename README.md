@@ -1,3 +1,9 @@
+# valor-react
+
+从零实现 React v18 的核心功能
+
+- 💪 实现方式完全与 React 源码接近
+- 💪 可跑通官方测试用例
 
 # [1] 工程初始化
 
@@ -166,4 +172,21 @@ export function getBaseRollupPlugins({
 
   归的过程创建**离屏DOM树**，然后插入到对应节点中，同时 为了方便统计flags, 在这个过程中利用或运算，把子节点中的 flags 都冒泡到上层节点的 subtreeFalgs 中
 
-# [5] commit 阶段
+# [6] commit 阶段
+
+react内部3个阶段：
+
+* schedule阶段
+* render阶段（beginWork completeWork）
+* commit阶段（commitWork）
+
+commit阶段的3个子阶段
+
+* beforeMutation阶段
+* mutation阶段
+* layout阶段
+
+
+`workLoop` 构建wip之后，会进行到commit阶段，这个阶段会开始处理 Placement，构建 dom, 开始layout.
+
+## ReactDom

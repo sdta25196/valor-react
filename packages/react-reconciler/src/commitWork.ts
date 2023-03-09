@@ -47,10 +47,12 @@ function commitPlacement(finishedWork: FiberNode) {
 	}
 
 	const hostParent = getHostParent(finishedWork);
-	appendPlacementNodeItoContainer(finishedWork, hostParent);
+	if (hostParent !== null) {
+		appendPlacementNodeItoContainer(finishedWork, hostParent);
+	}
 }
 
-function getHostParent(fiber: FiberNode): Container {
+function getHostParent(fiber: FiberNode): Container | null {
 	let parent = fiber.return;
 
 	while (parent) {
@@ -69,6 +71,7 @@ function getHostParent(fiber: FiberNode): Container {
 			console.log('未找到hostParent');
 		}
 	}
+	return null
 }
 
 // 寻找dom
@@ -77,7 +80,7 @@ function appendPlacementNodeItoContainer(
 	hostParent: Container
 ) {
 	if (finishedWork.tag === HostComponent || finishedWork.tag === HostText) {
-		appendChildToContainer(finishedWork.stateNode, hostParent);
+		appendChildToContainer(hostParent, finishedWork.stateNode);
 		return;
 	}
 

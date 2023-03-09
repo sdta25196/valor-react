@@ -29,7 +29,10 @@ export function getPackageJSON(pkgName) {
 // 基础 rollup 插件
 export function getBaseRollupPlugins({
   typescript = {},
-  alias = { __DEV__: true }
+  alias = {
+    __DEV__: true,
+    preventAssignment: true
+  }
 } = {}) {
   return [replace(alias), cjs(), ts(typescript)]
 }

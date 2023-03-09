@@ -190,3 +190,23 @@ commit阶段的3个子阶段
 `workLoop` 构建wip之后，会进行到commit阶段，这个阶段会开始处理 Placement，构建 dom, 开始layout.
 
 ## ReactDom
+
+hostConfig的实现在reactDOM中，react-reconciler最终被打包进reactDOM，由reactDOM的createRoot。开始调用首屏渲染。
+
+此时新增了 react-dom.config.js 来打包reactDOM, 由于需要同时打包react与react-dom，新增dev.config.js来作为配置文件。
+
+## 测试ReactDOM
+
+首先分别link react 和 react-dom
+
+* `cd dist\node_modules\react\`
+* `pnpm link --global`
+* `cd ..\react-dom\`
+* `pnpm link --global`
+
+进入react-dom, 使用react 和react-dom的link
+
+* `pnpm link react-dom --global`
+
+* `pnpm link react-dom --global`
+

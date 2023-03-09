@@ -71,7 +71,7 @@ function getHostParent(fiber: FiberNode): Container | null {
 			console.log('未找到hostParent');
 		}
 	}
-	return null
+	return null;
 }
 
 // 寻找dom

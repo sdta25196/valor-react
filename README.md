@@ -113,7 +113,7 @@ FiberNode {type: 'div'}
 Deletion Placement
 ```
 
-当所有ReactElement比较完后，会生成一棵fiberNode树，一共会存在两棵fiberNode树（双缓冲技术）：
+当所有ReactElement比较完后，会生成一棵fiberNode树，一共会存在两棵fiberNode树（**双缓冲技术**）：
 
 * current：与视图中真实UI对应的fiberNode树
 * workInProgress：触发更新后，正在reconciler中计算的fiberNode树
@@ -183,7 +183,8 @@ react内部3个阶段：
 commit阶段的3个子阶段
 
 * beforeMutation阶段
-* mutation阶段
+* mutation阶段  
+  * 此阶段结束，下一阶段开始前，会将wip赋值给current，实现两棵树切换
 * layout阶段
 
 
@@ -198,7 +199,7 @@ hostConfig的实现在reactDOM中，react-reconciler最终被打包进reactDOM�
 ## 测试ReactDOM
 
 首先分别link react 和 react-dom
-
+* 根目录执行 `pnpm run build:dev`
 * `cd dist\node_modules\react\`
 * `pnpm link --global`
 * `cd ..\react-dom\`
@@ -206,7 +207,11 @@ hostConfig的实现在reactDOM中，react-reconciler最终被打包进reactDOM�
 
 进入react-dom, 使用react 和react-dom的link
 
-* `pnpm link react-dom --global`
+* `pnpm link react --global`
 
 * `pnpm link react-dom --global`
+
+**至此，完成了首屏渲染的工作**
+
+# [7] Function Component
 

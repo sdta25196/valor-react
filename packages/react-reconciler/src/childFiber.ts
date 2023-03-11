@@ -48,7 +48,7 @@ function childReconciler(shouldTrackEffects: boolean) {
 					);
 				default:
 					if (__DEV__) {
-						console.log('为实现的reconcile类型');
+						console.log('未实现的reconcile类型', newChild.$$typeof);
 					}
 					break;
 			}
@@ -64,7 +64,7 @@ function childReconciler(shouldTrackEffects: boolean) {
 		}
 
 		if (__DEV__) {
-			console.log('为实现的reconcile类型');
+			console.log('未实现的reconcile类型1', newChild);
 		}
 
 		return null;

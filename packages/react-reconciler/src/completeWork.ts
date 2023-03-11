@@ -5,7 +5,7 @@ import {
 	appendInitialChilld,
 	createTextInitialChilld
 } from 'hostConfig';
-import { HostComponent, HostRoot, HostText } from './workTags';
+import { FunctionComponent, HostComponent, HostRoot, HostText } from './workTags';
 import { FiberNode } from './fiber';
 
 // dfs的归阶段
@@ -41,6 +41,9 @@ export const completeWork = (wip: FiberNode) => {
 			bubbleProperties(wip);
 			return null;
 		case HostRoot:
+			bubbleProperties(wip);
+			return null;
+		case FunctionComponent: // 函数式组件
 			bubbleProperties(wip);
 			return null;
 		default:

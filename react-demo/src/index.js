@@ -2,14 +2,23 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 
-const jsx = (<div><span>valor-react</span></div>)
+// const jsx = <div>valor-react</div>
+
+function App() {
+  return (<div><A /></div>)
+}
+
+function A() {
+  return <span>hello666</span>
+}
 
 const root = document.querySelector("#root")
 
-ReactDOM.createRoot(root).render(jsx)
+ReactDOM.createRoot(root).render(<App />)
 
-console.log(React)
+// console.log(React)
 
-console.log(jsx)
+// console.log(App)
+// console.log(<App />)
 
-console.log(ReactDOM)
+// console.log(ReactDOM)

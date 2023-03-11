@@ -1,5 +1,10 @@
 import { UpdateQueue, processUpdateQueue } from './updateQueue';
-import { HostRoot, HostComponent, HostText, FunctionComponent } from './workTags';
+import {
+	HostRoot,
+	HostComponent,
+	HostText,
+	FunctionComponent
+} from './workTags';
 import { FiberNode } from './fiber';
 import { ReactElementType } from 'shared/ReactTypes';
 import { mountChildFibers, reconcileChildFibers } from './childFiber';
@@ -24,10 +29,10 @@ export const beginWork = (wip: FiberNode) => {
 };
 
 function updateFunctionComponent(wip: FiberNode) {
-	const nextChildren = renderWithHooks(wip)
-	reconcileChildren(wip, nextChildren)
+	const nextChildren = renderWithHooks(wip);
+	reconcileChildren(wip, nextChildren);
 
-	return wip.child
+	return wip.child;
 }
 
 // 首屏渲染 需要触发首次渲染，所以有更新逻辑

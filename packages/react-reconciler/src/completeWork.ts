@@ -5,7 +5,12 @@ import {
 	appendInitialChilld,
 	createTextInitialChilld
 } from 'hostConfig';
-import { FunctionComponent, HostComponent, HostRoot, HostText } from './workTags';
+import {
+	FunctionComponent,
+	HostComponent,
+	HostRoot,
+	HostText
+} from './workTags';
 import { FiberNode } from './fiber';
 
 // dfs的归阶段

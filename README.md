@@ -223,4 +223,8 @@ hostConfig的实现在reactDOM中，react-reconciler最终被打包进reactDOM�
 
 在`brginWork`和`completeWork`中添加对 Function Component的处理逻辑即可。 Function Component会由babel在打包时编译成对jsx的调用
 
+## Hooks
 
+  此时新增了一个内部数据共享层（currentDispatcher），由于react中引用的hooks其实是在reconcile中实现的，所以需要这样一个中间层
+
+  

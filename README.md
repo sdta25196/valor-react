@@ -219,6 +219,10 @@ hostConfig的实现在reactDOM中，react-reconciler最终被打包进reactDOM�
 
 集成vite到项目中，新增`vite/demos`文件夹。利用vite配置，把demos中的react和react-dom指向自己编写的valor-react, 这样可以省去每次都需要编译后react-demo中才能看到效果的麻烦。
 
+pkg.json中添加启动脚本：`"demo": "vite serve vite-demos/test-fc --config scripts/vite/vite.config.js --force"`
+
+调试方式为，直接启动vite项目接口。
+
 ## Function Component
 
 在`brginWork`和`completeWork`中添加对 Function Component的处理逻辑即可。 Function Component会由babel在打包时编译成对jsx的调用
@@ -231,3 +235,4 @@ hostConfig的实现在reactDOM中，react-reconciler最终被打包进reactDOM�
 
 ## useState
 
+  实现mount

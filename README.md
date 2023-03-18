@@ -241,4 +241,10 @@ pkg.json中添加启动脚本：`"demo": "vite serve vite-demos/test-fc --config
 
 # [9] ReactElement的测试用例
 
-
+  * react-dom 新增 test-utils ，提供测试调用函数 renderIntoDocument。 其使用 ReactDOM 作为宿主环境进行测试
+  * 新增 react/\_\_tests\_\_/ReactElement-test.js 内容为react的测试用例
+  * 集成 jest 测试框架。`pnpm i -D -w @babel/core @babel/preset-env @babel/plugin-transform-react-jsx`
+  * 为jest增加 JSX 解析能力，安装Babel `pnpm i -D -w @babel/core @babel/preset-env @babel/plugin-transform-react-jsx`
+    * 新增 `babel.donfig.js`使用babel处理jsx 
+  * package.json 新增启动脚本 `"test": "jest --config scripts/jest/jest.config.js"`
+  * 启动 `pnpm run test` 并且测试用例全部通过

@@ -26,6 +26,14 @@ const ReactElement = function (
 	return element;
 };
 
+export const isValidElement = (object: any) => {
+	return (
+		typeof object === 'object' &&
+		object !== null &&
+		object.$$typeof === REACT_ELEMENT_TYPE
+	)
+}
+
 // 实现jsx
 export const jsx = (type: ElementType, config: any, ...maybeChildren: any) => {
 	let key: Key = null;
@@ -43,7 +51,7 @@ export const jsx = (type: ElementType, config: any, ...maybeChildren: any) => {
 
 		if (prop === 'ref') {
 			if (val !== undefined) {
-				ref = '' + val;
+				ref = val;
 			}
 			continue;
 		}
@@ -52,14 +60,15 @@ export const jsx = (type: ElementType, config: any, ...maybeChildren: any) => {
 			props[prop] = val;
 		}
 
-		const maybeChildrenLenght = maybeChildren.length;
 
-		if (maybeChildrenLenght) {
-			if (maybeChildrenLenght === 1) {
-				props.children = maybeChildren[0];
-			} else {
-				props.children = maybeChildren;
-			}
+	}
+	const maybeChildrenLenght = maybeChildren.length;
+
+	if (maybeChildrenLenght) {
+		if (maybeChildrenLenght === 1) {
+			props.children = maybeChildren[0];
+		} else {
+			props.children = maybeChildren;
 		}
 	}
 	return ReactElement(type, key, ref, props);

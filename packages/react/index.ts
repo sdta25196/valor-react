@@ -14,6 +14,6 @@ export const _SECRET_INTERNALS_DO_NOT_YSE_OR_YOU_WILL_BE_FIRED = {
 	currentDispatcher
 };
 
-export const version = '0.0.0'
-export const createElement = jsx
-export const isValidElement = _isValidElement
+export const version = '0.0.0';
+export const createElement = jsx;
+export const isValidElement = _isValidElement;

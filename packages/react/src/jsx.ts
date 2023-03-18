@@ -31,8 +31,8 @@ export const isValidElement = (object: any) => {
 		typeof object === 'object' &&
 		object !== null &&
 		object.$$typeof === REACT_ELEMENT_TYPE
-	)
-}
+	);
+};
 
 // 实现jsx
 export const jsx = (type: ElementType, config: any, ...maybeChildren: any) => {
@@ -59,8 +59,6 @@ export const jsx = (type: ElementType, config: any, ...maybeChildren: any) => {
 		if ({}.hasOwnProperty.call(config, prop)) {
 			props[prop] = val;
 		}
-
-
 	}
 	const maybeChildrenLenght = maybeChildren.length;
 

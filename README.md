@@ -234,5 +234,11 @@ pkg.json中添加启动脚本：`"demo": "vite serve vite-demos/test-fc --config
   > 为避免内部共享层，同时打包在react和react-dom包中，造成无法用同一个共享层。需要在react-dom打包脚本中忽略peerDependencies中的依赖 
 
 ## useState
+  
+  react 导出useState, useState是currentDispatcher中的current。具体调用过程发生在mount时
+  
+  > render -> workloop -> beginWork -> 判断函数式组件 -> renderWithHooks -> 处理hook逻辑，把hook逻辑加入到链表中
 
-  实现mount
+# [9] ReactElement的测试用例
+
+

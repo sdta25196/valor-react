@@ -14,7 +14,7 @@ export default [
     input: `${pkgPath}/${module}`,
     output: {
       file: `${distPkgPath}/index.js`,
-      name: 'react',
+      name: 'React',
       format: 'umd'
     },
     plugins: [...getBaseRollupPlugins(), generatePackageJson({
@@ -28,12 +28,12 @@ export default [
     output: [
       {
         file: `${distPkgPath}/jsx-runtime.js`,
-        name: 'jsx-runtime.js',
+        name: 'jsx-runtime',
         format: 'umd'
       },
       {
         file: `${distPkgPath}/jsx-dev-runtime.js`,
-        name: 'jsx-dev-runtime.js',
+        name: 'jsx-dev-runtime',
         format: 'umd'
       }
     ],

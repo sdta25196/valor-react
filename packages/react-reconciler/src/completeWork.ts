@@ -13,10 +13,9 @@ import {
 } from './workTags';
 import { FiberNode } from './fiber';
 
-
 // 标记更新
 function markUpdate(fiber: FiberNode) {
-	fiber.flags |= Update
+	fiber.flags |= Update;
 }
 
 // dfs的归阶段
@@ -43,10 +42,10 @@ export const completeWork = (wip: FiberNode) => {
 			// 构建离屏dom树
 			if (current !== null && wip.stateNode) {
 				// update
-				const oldText = current.memoizedProps.content
-				const newText = newProps.content
+				const oldText = current.memoizedProps.content;
+				const newText = newProps.content;
 				if (oldText !== newText) {
-					markUpdate(wip)
+					markUpdate(wip);
 				}
 			} else {
 				// mount

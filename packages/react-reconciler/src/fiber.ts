@@ -22,6 +22,7 @@ export class FiberNode {
 	flags: Flags;
 	subtreeFalgs: Flags;
 	updateQueue: unknown;
+	deletions: FiberNode[] | null // 需要删除的节点
 
 	constructor(tag: WorkTag, pendingProps: Props, key: Key) {
 		this.tag = tag;
@@ -44,6 +45,7 @@ export class FiberNode {
 		this.alternate = null;
 		this.flags = NoFlags;
 		this.subtreeFalgs = NoFlags;
+		this.deletions = null
 	}
 }
 
@@ -75,9 +77,11 @@ export const createWorkInProgress = (
 		wip.alternate = current;
 		current.alternate = wip;
 	} else {
+		// update 阶段
 		wip.pendingProps = pendingPros;
 		wip.flags = NoFlags;
 		wip.subtreeFalgs = NoFlags;
+		wip.deletions = null
 	}
 
 	wip.type = current.type;

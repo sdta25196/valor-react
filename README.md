@@ -248,3 +248,18 @@ pkg.json中添加启动脚本：`"demo": "vite serve vite-demos/test-fc --config
     * 新增 `babel.donfig.js`使用babel处理jsx 
   * package.json 新增启动脚本 `"test": "jest --config scripts/jest/jest.config.js"`
   * 启动 `pnpm run test` 并且测试用例全部通过
+
+# [10] update 流程
+
+## render 阶段
+
+beginWork 流程中需要判断fiber是否能够复用
+
+  * 比较key，如果key不同，不能复用
+  * 比较type，如果type不同，不能复用
+  * 如果key与type都相同，则可复用
+  * 不能复用，则创建新的（同mount流程），可以复用则复用旧的
+
+completeWork 流程处理标记update
+
+commitWork 流程 最终遍历子树，提交任务。

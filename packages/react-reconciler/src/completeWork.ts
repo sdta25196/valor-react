@@ -1,4 +1,4 @@
-import { NoFlags } from './fiberFlags';
+import { NoFlags, Update } from './fiberFlags';
 import {
 	Container,
 	createInstance,
@@ -12,6 +12,12 @@ import {
 	HostText
 } from './workTags';
 import { FiberNode } from './fiber';
+
+
+// 标记更新
+function markUpdate(fiber: FiberNode) {
+	fiber.flags |= Update
+}
 
 // dfs的归阶段
 export const completeWork = (wip: FiberNode) => {
@@ -37,6 +43,11 @@ export const completeWork = (wip: FiberNode) => {
 			// 构建离屏dom树
 			if (current !== null && wip.stateNode) {
 				// update
+				const oldText = current.memoizedProps.content
+				const newText = newProps.content
+				if (oldText !== newText) {
+					markUpdate(wip)
+				}
 			} else {
 				// mount
 				// 构建 dom

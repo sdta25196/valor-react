@@ -1,7 +1,7 @@
-import { Container, appendChildToContainer } from 'hostConfig';
+import { Container, appendChildToContainer, commitUpdate } from 'hostConfig';
 import { HostComponent, HostRoot, HostText } from './workTags';
 import { FiberNode, FiberRootNode } from './fiber';
-import { MutationMask, NoFlags, Placement } from './fiberFlags';
+import { MutationMask, NoFlags, Placement, Update } from './fiberFlags';
 
 let nextEffect: FiberNode | null = null;
 
@@ -38,6 +38,13 @@ function commitMutationEffectOnFiber(finishedWork: FiberNode) {
 		commitPlacement(finishedWork);
 
 		finishedWork.flags &= ~Placement;
+	}
+
+	if ((flags & Update) !== NoFlags) {
+		//执行对应的操作方法，然后删除标记
+		commitUpdate(finishedWork);
+
+		finishedWork.flags &= ~Update;
 	}
 }
 
